@@ -1,4 +1,5 @@
 local L = AceLibrary("AceLocale-2.0"):new("XLoot")
+local waterfall = AceLibrary("Waterfall-1.0")
 
 function XLoot:DoOptions()
 	local db = self.db.profile
@@ -396,7 +397,7 @@ function XLoot:DoOptions()
 					},
 					defaults = {
 						type = "execute",
-						name = "|cFFFF5522"..L["optDefaults"],
+						name = L["optDefaults"],
 						desc = L["descDefaults"],
 						func = function() self:Defaults() end, 
 						order = 3
@@ -405,5 +406,7 @@ function XLoot:DoOptions()
 			},
 		}
 	}
-	self:RegisterChatCommand({ "/xloot" }, self.opts)
+	self:RegisterChatCommand({ "/xlootcl" }, self.opts)
+	self:RegisterChatCommand({ "/xloot"}, function() waterfall:Open('XLoot') end)
+	waterfall:Register('XLoot', 'aceOptions', self.opts, 'title','XLoot 0.5. Revision: 12996','colorR', 0.8, 'colorG', 0.6, 'colorB', 0) 
 end
